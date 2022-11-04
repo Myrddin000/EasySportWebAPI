@@ -1,0 +1,154 @@
+﻿using EasySport_BLL.Models;
+using EasySport_DAL.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace EasySport_BLL.Tools
+{
+
+    // User Mappers
+    public static class Mappers
+    {
+        public static UserEntities ToDAL(this UserFormDTO user)
+        {
+            return new UserEntities
+            {
+                Pseudo = user.Pseudo,
+                Email = user.Email,
+                Password = user.Password,
+                
+            };
+        }
+
+        public static UserDTO ToBLL(this UserEntities user)
+        {
+            return new UserDTO
+            {
+                Id = user.Id,
+                Pseudo = user.Pseudo,
+                Email = user.Email,
+                Password = user.Password,
+                Role = user.Role,
+            };
+        }
+
+        public static IEnumerable<UserDTO> ToBLL(this IEnumerable<UserEntities> user)
+        {
+            foreach (UserEntities item in user)
+            {
+                yield return new UserDTO
+                {
+                    Id = item.Id,
+                    Pseudo = item.Pseudo,
+                    Email = item.Email,
+                    Password = item.Password,
+                    Role = item.Role,
+                };
+            }
+        }
+        public static UserRegisteredDTO UserRegisteredToBLL(this UserDTO user)
+        {
+            return new UserRegisteredDTO
+            {
+                Id = user.Id,
+                Pseudo = user.Pseudo,
+                Email = user.Email,
+                Role = user.Role,
+            };
+        }
+
+
+
+        //  Team Mappers
+
+        public static TeamEntities ToDAL(this TeamFormDTO team)
+        {
+            return new TeamEntities
+            {
+                Id = team.Id,
+                Name = team.Name,
+                Sport = team.Sport,
+                UserId = team.UserId
+
+            };
+        }
+
+        public static TeamDTO ToBLL(this TeamEntities team)
+        {
+            return new TeamDTO
+            {
+                Id = team.Id,
+                Number = team.Number,
+                Name = team.Name,
+                Sport = team.Sport,
+                UserId = team.UserId,
+            };
+        }
+        public static IEnumerable<TeamDTO> ToBLL(this IEnumerable<TeamEntities> team)
+        {
+            foreach (TeamEntities item in team)
+            {
+                yield return new TeamDTO
+                {
+                    Id = item.Id,
+                    Number = item.Number,
+                    Name = item.Name,
+                    Sport = item.Sport,
+                    UserId = item.UserId,
+                };
+            }
+        }
+
+
+        //Game
+
+        public static GameEntities ToDAL(this GameFormDTO game)
+        {
+            return new GameEntities
+            {
+                Id = game.Id,
+                Date = game.Date,
+                StartTime = game.StartTime,
+                EndTime = game.EndTime,
+                ScoreA = game.ScoreA,
+                ScoreB = game.ScoreB,
+                TeamId = game.TeamId,
+
+            };
+        }
+
+        public static GameDTO ToBLL(this GameEntities game)
+        {
+            return new GameDTO
+            {
+                Id = game.Id,
+                Date = game.Date,
+                StartTime = game.StartTime,
+                EndTime = game.EndTime,
+                ScoreA = game.ScoreA,
+                ScoreB = game.ScoreB,
+                TeamId = game.TeamId,
+            };
+        }
+        public static IEnumerable<GameDTO> ToBLL(this IEnumerable<GameEntities> game)
+        {
+            foreach (GameEntities item in game)
+            {
+                yield return new GameDTO
+                {
+                    Id = item.Id,
+                    Date = item.Date,
+                    StartTime = item.StartTime,
+                    EndTime = item.EndTime,
+                    ScoreA = item.ScoreA,
+                    ScoreB = item.ScoreB,
+                    TeamId = item.TeamId,
+                };
+            }
+        }
+
+    }
+}

@@ -1,0 +1,12 @@
+﻿CREATE TABLE [dbo].[Games]
+(
+	[Id] UNIQUEIDENTIFIER NOT NULL DEFAULT NEWID(), 
+    [Date] DATE NOT NULL, 
+    [StartTime] DATETIME NOT NULL, 
+    [EndTime] DATETIME NOT NULL, 
+    [ScoreA] INT NOT NULL, 
+    [ScoreB] INT NOT NULL, 
+    [TeamId] UNIQUEIDENTIFIER NOT NULL, 
+    CONSTRAINT [PK_Games] PRIMARY KEY ([Id]), 
+    CONSTRAINT [FK_Games_Teams] FOREIGN KEY ([TeamId]) REFERENCES [Teams]([Id])
+)
