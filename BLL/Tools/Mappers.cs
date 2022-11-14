@@ -22,6 +22,17 @@ namespace EasySport_BLL.Tools
                 
             };
         }
+        public static UserEntities ToDAL(this UserDTO user)
+        {
+            return new UserEntities
+            {
+                Id = user.Id,
+                Pseudo = user.Pseudo,
+                Email = user.Email,
+                Password = user.Password,
+                Role = user.Role,
+            };
+        }
 
         public static UserDTO ToBLL(this UserEntities user)
         {
@@ -32,6 +43,17 @@ namespace EasySport_BLL.Tools
                 Email = user.Email,
                 Password = user.Password,
                 Role = user.Role,
+            };
+        }
+        public static UserFormDTO ToFormBLL(this UserEntities user)
+        {
+            return new UserFormDTO
+            {
+                
+                Pseudo = user.Pseudo,
+                Email = user.Email,
+                Password = user.Password,
+                
             };
         }
 
@@ -68,7 +90,7 @@ namespace EasySport_BLL.Tools
         {
             return new TeamEntities
             {
-                Id = team.Id,
+               
                 Name = team.Name,
                 Sport = team.Sport,
                 UserId = team.UserId

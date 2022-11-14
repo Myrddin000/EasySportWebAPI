@@ -10,7 +10,7 @@ namespace EasySport_BLL.Models
         public class TeamFormDTO
         {
 
-            public Guid Id { get; set; }
+            
 
             public string Name { get; set; } = String.Empty;
 

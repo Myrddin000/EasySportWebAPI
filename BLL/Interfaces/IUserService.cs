@@ -11,8 +11,13 @@ namespace EasySport_BLL.Interfaces
     public interface IUserService
     {
         void Create(UserFormDTO user);
+
         IEnumerable<UserDTO> GetAll();
 
+        void Update(UserDTO user);
+
         void Delete(Guid Id);
+
+        UserFormDTO GetById(Guid Id);
     }
 }

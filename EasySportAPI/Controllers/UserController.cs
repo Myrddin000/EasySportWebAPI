@@ -60,5 +60,34 @@ namespace EasySport_API.Controllers
             }
             return Ok();
         }
+
+        [HttpPost("update")]
+        public IActionResult Update(UserDTO user)
+        {
+            try
+            {
+                _userService.Update(user);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
+        }
+        [HttpGet("GetById")]
+        public IActionResult GetById(Guid Id)
+        {
+            try
+            {
+                
+                return Ok(_userService.GetById(Id));
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message); ;
+            }
+        } 
     }
 }

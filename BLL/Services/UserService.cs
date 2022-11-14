@@ -30,10 +30,10 @@ namespace EasySport_BLL.Services
             {
                 _userRepository.Create(user.ToDAL());
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw new Exception();
+                throw new Exception(ex.Message);
             }
         }
 
@@ -63,8 +63,33 @@ namespace EasySport_BLL.Services
             };
         }
 
+        public void Update(UserDTO user)
+        {
+            if (user.Pseudo == null || user.Email == null || user.Password == null)
+            {
+                throw new Exception("Données incomplètes");
+            }
+            try
+            {
+                _userRepository.Update(user.ToDAL());
+            }
+            catch (Exception)
+            {
+                throw new Exception();
+            }
+        }
 
+        public UserFormDTO GetById(Guid Id)
+        {
+            try
+            {
+                 return _userRepository.GetById(Id).ToFormBLL();
+            }
+            catch (Exception)
+            {
 
-
+                throw new Exception();
+            };
+        }
     }
 }

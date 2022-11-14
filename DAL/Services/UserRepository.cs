@@ -60,9 +60,55 @@ namespace EasySport_DAL.Services
 
                 }
 
+            }
+        }
 
+        public void Update(UserEntities user)
+        {
+            using SqlConnection sqlConnection = new SqlConnection(connectionstring);
+            sqlConnection.Open();
+            using SqlCommand cmd = sqlConnection.CreateCommand();
+            cmd.CommandText = @"UPDATE [Users] SET [Pseudo] = @Pseudo, [Email] = @Email, [Password] = @Password, [Role] = @Role WHERE Id = @Id";
+            cmd.Parameters.AddWithValue("Id", user.Id);
+            cmd.Parameters.AddWithValue("Pseudo", user.Pseudo);
+            cmd.Parameters.AddWithValue("Email", user.Email);
+            cmd.Parameters.AddWithValue("Password", user.Password);
+            cmd.Parameters.AddWithValue("Role", user.Role);
 
+            cmd.ExecuteNonQuery();
+            sqlConnection.Close();
+        }
 
+        public UserEntities GetById(Guid Id)
+        {
+            using (SqlConnection sqlConnection = new SqlConnection(connectionstring))
+            {
+                sqlConnection.Open();
+                using (SqlCommand cmd = sqlConnection.CreateCommand())
+                {
+                    cmd.CommandText = "SELECT * FROM [Users] WHERE [Id] = @Id";
+
+                    cmd.Parameters.AddWithValue("Id", Id);
+
+                    using SqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        return new UserEntities
+                        {
+                            
+                            Pseudo = (string)reader["Pseudo"],
+                            Email = (string)reader["Email"],
+                            Password = (string)reader["Password"],
+                        };
+                    }
+                    else
+                    {
+                        
+                        throw new Exception("User not found");
+                    }
+                    
+
+                }
 
             }
         }

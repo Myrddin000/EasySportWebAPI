@@ -14,5 +14,9 @@ namespace EasySport_DAL.Interfaces
         void Create(UserEntities user);
 
         void Delete(Guid Id);
+
+        void Update(UserEntities user);
+
+        UserEntities GetById(Guid Id);
     }
 }
