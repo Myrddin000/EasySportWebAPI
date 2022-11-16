@@ -42,7 +42,6 @@ namespace EasySport_DAL.Services
                 yield return new TeamEntities
                 {
                     Id = (Guid)reader["Id"],
-                    Number = (int)reader["Number"],
                     Name = (string)reader["Name"],
                     Sport = (string)reader["Sport"], 
                     UserId = (Guid)reader["UserId"]
@@ -98,7 +97,6 @@ namespace EasySport_DAL.Services
                 return new TeamEntities
                 {
                     Id = (Guid)reader["Id"],
-                    Number = (int)reader["Number"],
                     Name = (string)reader["Name"],
                     Sport = (string)reader["Sport"],
                     UserId = (Guid)reader["UserId"]

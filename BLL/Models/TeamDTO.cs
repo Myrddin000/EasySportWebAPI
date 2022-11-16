@@ -10,8 +10,6 @@ namespace EasySport_BLL.Models
     {
         public Guid Id { get; set; }
 
-        public int Number { get; set; }
-
         public string Name { get; set; } = String.Empty;
 
         public string Sport { get; set; } = String.Empty;

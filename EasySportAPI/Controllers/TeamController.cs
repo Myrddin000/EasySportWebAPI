@@ -19,12 +19,12 @@ namespace EasySport_API.Controllers
         }
 
         [HttpPost]
-        [Authorize]
+        
         public IActionResult Create(TeamFormDTO team)
         {
             try
             {
-                team.UserId = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+                //team.UserId = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
                 _teamService.Create(team);
                 return Ok();
             }
@@ -49,7 +49,7 @@ namespace EasySport_API.Controllers
             }
         }
 
-        [HttpGet("details")]
+        [HttpGet("{Id}")]
         public IActionResult GetDetails(Guid Id)
         {
             try

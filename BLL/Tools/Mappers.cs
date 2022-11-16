@@ -103,7 +103,6 @@ namespace EasySport_BLL.Tools
             return new TeamDTO
             {
                 Id = team.Id,
-                Number = team.Number,
                 Name = team.Name,
                 Sport = team.Sport,
                 UserId = team.UserId,
@@ -115,9 +114,7 @@ namespace EasySport_BLL.Tools
             {
                 yield return new TeamDTO
                 {
-                    Id = item.Id,
-                    Number = item.Number,
-                    Name = item.Name,
+                    Id = item.Id,                    Name = item.Name,
                     Sport = item.Sport,
                     UserId = item.UserId,
                 };
