@@ -22,7 +22,7 @@ namespace EasySport_BLL.Services
 
         public void Create(TeamFormDTO team)
         {
-            if (team == null)
+            if (team == null || team.Sport == null)
             {
                 throw new Exception("Données incomplètes");
             }
@@ -87,6 +87,46 @@ namespace EasySport_BLL.Services
             {
 
                 return _teamRepository.GetDetails(Id).ToBLL();
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public void AddPlayer(Guid TeamId, Guid PlayerId)
+        {
+            
+            try
+            {
+                _teamRepository.AddPlayer(PlayerId, TeamId);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public void DeletePlayer(Guid TeamId, Guid PlayerId)
+        {
+            try
+            {
+                _teamRepository.DeletePlayer(PlayerId, TeamId);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        
+
+        public IEnumerable<TeamsUsersDTO> GetAllPlayers(Guid TeamId)
+        {
+            try
+            {
+                return _teamRepository.GetAllPlayers(TeamId).ToBLL();
             }
             catch (Exception ex)
             {

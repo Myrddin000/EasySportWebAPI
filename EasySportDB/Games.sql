@@ -4,8 +4,8 @@
     [Date] DATE NOT NULL, 
     [StartTime] DATETIME NOT NULL, 
     [EndTime] DATETIME NOT NULL, 
-    [ScoreA] INT NOT NULL, 
-    [ScoreB] INT NOT NULL, 
+    [ScoreA] INT NULL, 
+    [ScoreB] INT NULL, 
     [TeamId] UNIQUEIDENTIFIER NOT NULL, 
     CONSTRAINT [PK_Games] PRIMARY KEY ([Id]), 
     CONSTRAINT [FK_Games_Teams] FOREIGN KEY ([TeamId]) REFERENCES [Teams]([Id])

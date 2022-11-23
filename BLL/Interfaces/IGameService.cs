@@ -17,6 +17,6 @@ namespace EasySport_BLL.Interfaces
 
         void Delete(Guid Id);
 
-        GameDTO GetDetails(Guid Id);
+        IEnumerable<GamesUsersDTO> GetHeadcount(Guid Id);
     }
 }

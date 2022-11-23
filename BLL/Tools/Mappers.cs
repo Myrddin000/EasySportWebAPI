@@ -108,15 +108,31 @@ namespace EasySport_BLL.Tools
                 UserId = team.UserId,
             };
         }
+
         public static IEnumerable<TeamDTO> ToBLL(this IEnumerable<TeamEntities> team)
         {
             foreach (TeamEntities item in team)
             {
                 yield return new TeamDTO
                 {
-                    Id = item.Id,                    Name = item.Name,
+                    Id = item.Id,                    
+                    Name = item.Name,
                     Sport = item.Sport,
                     UserId = item.UserId,
+                };
+            }
+        }
+
+        public static IEnumerable<TeamsUsersDTO> ToBLL(this IEnumerable<TeamsUsersEntities> team)
+        {
+            foreach(TeamsUsersEntities item in team)
+            {
+                yield return new TeamsUsersDTO
+                {
+                    TeamId = item.TeamId,
+                    UserId = item.UserId,
+                    Pseudo = item.Pseudo,
+                    Email = item.Email,
                 };
             }
         }
@@ -139,18 +155,20 @@ namespace EasySport_BLL.Tools
             };
         }
 
-        public static GameDTO ToBLL(this GameEntities game)
+        public static IEnumerable<GamesUsersDTO> ToBLL(this IEnumerable<GamesUsersEntities> game)
         {
-            return new GameDTO
-            {
-                Id = game.Id,
-                Date = game.Date,
-                StartTime = game.StartTime,
-                EndTime = game.EndTime,
-                ScoreA = game.ScoreA,
-                ScoreB = game.ScoreB,
-                TeamId = game.TeamId,
-            };
+            foreach (GamesUsersEntities item in game)
+            { 
+                yield return new GamesUsersDTO
+                {
+                Pseudo = item.Pseudo,
+                Email = item.Email, 
+                UserId = item.UserId,
+                Available = item.Available,
+                NotAvailable = item.NotAvailable,
+                Pending = item.Pending,
+                };
+            }
         }
         public static IEnumerable<GameDTO> ToBLL(this IEnumerable<GameEntities> game)
         {

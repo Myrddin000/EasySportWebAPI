@@ -35,11 +35,11 @@ namespace EasySport_DAL.Services
                 UserEntities user = new UserEntities();
                 if (reader.Read())
                 {
-                    user.Id = (Guid)reader["Id"];
-                    user.Pseudo = (string)reader["Pseudo"];
-                    user.Email = (string)reader["Email"];
-                    user.Password = (string)reader["Password"];
-                    user.Role = (int)reader["Role"];
+                    user.Id = (Guid)reader[nameof(UserEntities.Id)];
+                    user.Pseudo = (string)reader[nameof(UserEntities.Pseudo)];
+                    user.Email = (string)reader[nameof(UserEntities.Email)];
+                    user.Password = (string)reader[nameof(UserEntities.Password)];
+                    user.Role = (int)reader[nameof(UserEntities.Role)];
                 }
                 else throw new Exception("Identifiant incorrecte");
                 return user;

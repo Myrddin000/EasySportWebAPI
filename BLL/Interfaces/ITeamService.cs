@@ -18,5 +18,11 @@ namespace EasySport_BLL.Interfaces
         void Delete(Guid Id);
 
         TeamDTO GetDetails(Guid Id);
+
+        void AddPlayer(Guid TeamId, Guid PlayerId);
+
+        void DeletePlayer(Guid TeamId, Guid PlayerId);
+
+        IEnumerable<TeamsUsersDTO> GetAllPlayers(Guid TeamId);
     }
 }

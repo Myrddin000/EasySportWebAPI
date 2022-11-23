@@ -16,10 +16,12 @@ namespace EasySport_BLL.Models
 
         public DateTime EndTime { get; set; }
 
-        public int ScoreA { get; set; }
+        public int? ScoreA { get; set; }
 
-        public int ScoreB { get; set; }
+        public int? ScoreB { get; set; }
 
         public Guid TeamId { get; set; }
+
+        
     }
 }

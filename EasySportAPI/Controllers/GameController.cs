@@ -47,12 +47,12 @@ namespace EasySport_API.Controllers
         }
 
 
-        [HttpGet("details")]
-        public IActionResult GetDetails(Guid Id)
+        [HttpGet("headcount")]
+        public IActionResult GetHeadcount(Guid Id)
         {
             try
             {
-                return Ok(_gameService.GetDetails(Id));
+                return Ok(_gameService.GetHeadcount(Id));
             }
             catch (Exception ex)
             {

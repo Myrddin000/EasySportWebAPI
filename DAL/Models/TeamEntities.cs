@@ -10,8 +10,6 @@ namespace EasySport_DAL.Models
     {
         public Guid Id { get; set; }
 
-        
-
         public string Name { get; set; } = String.Empty;
 
         public string Sport { get; set; } = String.Empty;

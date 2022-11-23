@@ -18,9 +18,9 @@ namespace EasySport_DAL.Services
             sqlConnection.Open();
             using SqlCommand cmd = sqlConnection.CreateCommand();
             cmd.CommandText = @"INSERT INTO [Users] ([Pseudo], [Email], [Password]) VALUES (@Pseudo, @Email, @Password)";
-            cmd.Parameters.AddWithValue("Pseudo", user.Pseudo);
-            cmd.Parameters.AddWithValue("Email", user.Email);
-            cmd.Parameters.AddWithValue("Password", user.Password);
+            cmd.Parameters.AddWithValue(nameof(UserEntities.Pseudo), user.Pseudo);
+            cmd.Parameters.AddWithValue(nameof(UserEntities.Email), user.Email);
+            cmd.Parameters.AddWithValue(nameof(UserEntities.Password), user.Password);
             cmd.ExecuteNonQuery();
             sqlConnection.Close();
         }
@@ -36,10 +36,10 @@ namespace EasySport_DAL.Services
             {
                 yield return new UserEntities
                 {
-                    Id = (Guid)reader["Id"],
-                    Pseudo = (string)reader["Pseudo"],
-                    Email = (string)reader["Email"],
-                    Role = (int)reader["Role"],
+                    Id = (Guid)reader[nameof(UserEntities.Id)],
+                    Pseudo = (string)reader[nameof(UserEntities.Pseudo)],
+                    Email = (string)reader[nameof(UserEntities.Email)],
+                    Role = (int)reader[nameof(UserEntities.Role)],
                 };
             }
             sqlConnection.Close();
@@ -70,10 +70,10 @@ namespace EasySport_DAL.Services
             using SqlCommand cmd = sqlConnection.CreateCommand();
             cmd.CommandText = @"UPDATE [Users] SET [Pseudo] = @Pseudo, [Email] = @Email, [Password] = @Password, [Role] = @Role WHERE Id = @Id";
             cmd.Parameters.AddWithValue("Id", user.Id);
-            cmd.Parameters.AddWithValue("Pseudo", user.Pseudo);
-            cmd.Parameters.AddWithValue("Email", user.Email);
-            cmd.Parameters.AddWithValue("Password", user.Password);
-            cmd.Parameters.AddWithValue("Role", user.Role);
+            cmd.Parameters.AddWithValue(nameof(UserEntities.Pseudo), user.Pseudo);
+            cmd.Parameters.AddWithValue(nameof(UserEntities.Email), user.Email);
+            cmd.Parameters.AddWithValue(nameof(UserEntities.Password), user.Password);
+            cmd.Parameters.AddWithValue(nameof(UserEntities.Role), user.Role);
 
             cmd.ExecuteNonQuery();
             sqlConnection.Close();
@@ -96,9 +96,9 @@ namespace EasySport_DAL.Services
                         return new UserEntities
                         {
                             
-                            Pseudo = (string)reader["Pseudo"],
-                            Email = (string)reader["Email"],
-                            Password = (string)reader["Password"],
+                            Pseudo = (string)reader[nameof(UserEntities.Pseudo)],
+                            Email = (string)reader[nameof(UserEntities.Email)],
+                            Password = (string)reader[nameof(UserEntities.Password)],
                         };
                     }
                     else

@@ -19,7 +19,7 @@ namespace EasySport_API.Controllers
         }
 
         [HttpPost]
-        
+
         public IActionResult Create(TeamFormDTO team)
         {
             try
@@ -84,6 +84,7 @@ namespace EasySport_API.Controllers
             try
             {
                 _teamService.Delete(Id);
+                return Ok();
 
             }
             catch (Exception ex)
@@ -91,7 +92,63 @@ namespace EasySport_API.Controllers
 
                 return BadRequest(ex.Message);
             }
-            return Ok();
+
         }
+
+        
+        [HttpPost("{TeamId}")]
+        [Authorize]
+        public IActionResult AddPlayer([FromRoute]Guid TeamId)
+        {
+            try
+            {
+
+                Guid playerId = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+                _teamService.AddPlayer(playerId, TeamId);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
+            
+        }
+        
+        [HttpDelete("Player/{TeamId}")]
+        [Authorize]
+        public IActionResult DeletePlayer(Guid TeamId) 
+        {
+            try
+            {
+
+                Guid playerId = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+                _teamService.DeletePlayer(playerId, TeamId);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
+          
+        }
+
+        [HttpGet("Player/{TeamId}")]
+        [Authorize]
+        public IActionResult GetAllPlayers(Guid TeamId)
+        {
+            try
+            {
+                return Ok(_teamService.GetAllPlayers(TeamId));
+            }
+            catch (Exception ex)
+            {
+
+                return NotFound(ex.Message);
+            }
+        }
+
+
     }
 }

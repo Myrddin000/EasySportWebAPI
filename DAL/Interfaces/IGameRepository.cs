@@ -13,7 +13,7 @@ namespace EasySport_DAL.Interfaces
 
         void Create(GameEntities game);
 
-        GameEntities GetDetails(Guid Id);
+        IEnumerable<GamesUsersEntities> GetHeadcount(Guid Id);
 
         void Update(GameEntities game);
 

@@ -67,11 +67,11 @@ namespace EasySport_BLL.Services
             }
         }
 
-        public GameDTO GetDetails(Guid Id)
+        public IEnumerable<GamesUsersDTO> GetHeadcount(Guid Id)
         {
             try
             {
-                return _gameRepository.GetDetails(Id).ToBLL();
+                return _gameRepository.GetHeadcount(Id).ToBLL();
             }
             catch (Exception ex)
             {
@@ -95,5 +95,7 @@ namespace EasySport_BLL.Services
                 throw new Exception();
             }
         }
+
+      
     }
 }

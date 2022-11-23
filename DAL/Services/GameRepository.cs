@@ -19,12 +19,12 @@ namespace EasySport_DAL.Models
             sqlConnection.Open();
             using SqlCommand cmd = sqlConnection.CreateCommand();
             cmd.CommandText = @"INSERT INTO[Games]([Date], [StartTime], [EndTime], [ScoreA], [ScoreB], [TeamId]) VALUES(@Date, @StartTime, @EndTime, @ScoreA, @ScoreB, @TeamId)";
-            cmd.Parameters.AddWithValue("Date", game.Date);
-            cmd.Parameters.AddWithValue("StartTime", game.StartTime);
-            cmd.Parameters.AddWithValue("EndTime", game.EndTime);
-            cmd.Parameters.AddWithValue("ScoreA", game.ScoreA);
-            cmd.Parameters.AddWithValue("ScoreB", game.ScoreB);
-            cmd.Parameters.AddWithValue("TeamId", game.TeamId);
+            cmd.Parameters.AddWithValue(nameof(GameEntities.Date), game.Date);
+            cmd.Parameters.AddWithValue(nameof(GameEntities.StartTime), game.StartTime);
+            cmd.Parameters.AddWithValue(nameof(GameEntities.EndTime), game.EndTime);
+            cmd.Parameters.AddWithValue(nameof(GameEntities.ScoreA), game.ScoreA);
+            cmd.Parameters.AddWithValue(nameof(GameEntities.ScoreB), game.ScoreB);
+            cmd.Parameters.AddWithValue(nameof(GameEntities.TeamId), game.TeamId);
 
             cmd.ExecuteNonQuery();
             sqlConnection.Close();
@@ -58,48 +58,45 @@ namespace EasySport_DAL.Models
             {
                 yield return new GameEntities
                 {
-                    Id = (Guid)reader["Id"],
-                    Date = (DateTime)reader["Date"],
-                    StartTime = (DateTime)reader["StartTime"],
-                    EndTime = (DateTime)reader["EndTime"],
-                    ScoreA = (int)reader["ScoreA"],
-                    ScoreB = (int)reader["ScoreB"],
-                    TeamId = (Guid)reader["TeamId"]
+                    Id = (Guid)reader[nameof(GameEntities.Id)],
+                    Date = (DateTime)reader[nameof(GameEntities.Date)],
+                    StartTime = (DateTime)reader[nameof(GameEntities.StartTime)],
+                    EndTime = (DateTime)reader[nameof(GameEntities.EndTime)],
+                    ScoreA = (reader["ScoreA"]is DBNull) ? null : (int?)reader["ScoreA"],
+                    ScoreB = (reader["ScoreB"] is DBNull) ? null : (int?)reader["ScoreB"],
+                    TeamId = (Guid)reader[nameof(GameEntities.TeamId)]
                 };
             }
             sqlConnection.Close();
         }
 
-        public GameEntities GetDetails(Guid Id)
+        public IEnumerable<GamesUsersEntities> GetHeadcount(Guid Id)
         {
             using SqlConnection sqlConnection = new SqlConnection(connectionstring);
             sqlConnection.Open();
             using SqlCommand cmd = sqlConnection.CreateCommand();
-            cmd.CommandText = @"SELECT * FROM[Games] WHERE [Games].Id = @Id";
-            cmd.Parameters.AddWithValue("Id", Id);
+            cmd.CommandText = @"SELECT G.UserId, U.Pseudo, U.Email, G.Available, G.NotAvailable, G.Pending FROM [Games_Users] G
+                                INNER JOIN [Users] U ON U.Id = G.UserId
+                                WHERE GameId = @Id";
+
+            cmd.Parameters.AddWithValue(nameof(GamesUsersEntities.Id), Id);
 
             using SqlDataReader reader = cmd.ExecuteReader();
 
-            if (reader.Read())
+            while (reader.Read())
             {
 
-                return new GameEntities
+                yield return new GamesUsersEntities
                 {
-                    Id = (Guid)reader["Id"],
-                    Date = (DateTime)reader["Date"],
-                    StartTime = (DateTime)reader["StartTime"],
-                    EndTime = (DateTime)reader["EndTime"],
-                    ScoreA = (int)reader["ScoreA"],
-                    ScoreB = (int)reader["ScoreB"],
-                    TeamId = (Guid)reader["TeamId"]
+                    Pseudo = (string)reader[nameof(GamesUsersEntities.Pseudo)],
+                    Email = (string)reader[nameof(GamesUsersEntities.Email)],
+                    UserId = (Guid)reader[nameof(GamesUsersEntities.UserId)],
+                    Available = (Boolean)reader[nameof(GamesUsersEntities.Available)],
+                    NotAvailable = (Boolean)reader[nameof(GamesUsersEntities.NotAvailable)],
+                    Pending = (Boolean)reader[nameof(GamesUsersEntities.Pending)],
                 };
             }
-            else
-            {
-
-                throw new Exception("Game non trouvé");
-
-            }
+            
         }
 
         public void Update(GameEntities game)
@@ -108,13 +105,13 @@ namespace EasySport_DAL.Models
             sqlConnection.Open();
             using SqlCommand cmd = sqlConnection.CreateCommand();
             cmd.CommandText = @"UPDATE [Games] SET [Date] = @Date, [StartTime] = @StartTime, [EndTime] = @EndTime, [ScoreA] = @ScoreA, [ScoreB] = @ScoreB, [TeamId] = @TeamId WHERE [Id] = @Id";
-            cmd.Parameters.AddWithValue("Id", game.Id);
-            cmd.Parameters.AddWithValue("Date", game.Date);
-            cmd.Parameters.AddWithValue("StartTime", game.StartTime);
-            cmd.Parameters.AddWithValue("EndTime", game.EndTime);
-            cmd.Parameters.AddWithValue("ScoreA", game.ScoreA);
-            cmd.Parameters.AddWithValue("ScoreB", game.ScoreB);
-            cmd.Parameters.AddWithValue("TeamId", game.TeamId);
+            cmd.Parameters.AddWithValue(nameof(GameEntities.Id), game.Id);
+            cmd.Parameters.AddWithValue(nameof(GameEntities.Date), game.Date);
+            cmd.Parameters.AddWithValue(nameof(GameEntities.StartTime), game.StartTime);
+            cmd.Parameters.AddWithValue(nameof(GameEntities.EndTime), game.EndTime);
+            cmd.Parameters.AddWithValue(nameof(GameEntities.ScoreA), game.ScoreA);
+            cmd.Parameters.AddWithValue(nameof(GameEntities.ScoreB), game.ScoreB);
+            cmd.Parameters.AddWithValue(nameof(GameEntities.TeamId), game.TeamId);
             cmd.ExecuteNonQuery();
             sqlConnection.Close();
         }

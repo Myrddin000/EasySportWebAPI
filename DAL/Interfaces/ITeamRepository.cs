@@ -18,5 +18,11 @@ namespace EasySport_DAL.Interfaces
         void Delete(Guid Id);
 
         TeamEntities GetDetails(Guid Id);
+
+        void AddPlayer(Guid TeamId, Guid PlayerId);
+
+        void DeletePlayer(Guid TeamId, Guid PlayerId);
+
+        IEnumerable<TeamsUsersEntities> GetAllPlayers(Guid TeamId);
     }
 }
