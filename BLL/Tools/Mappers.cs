@@ -145,6 +145,7 @@ namespace EasySport_BLL.Tools
             return new GameEntities
             {
                 Id = game.Id,
+                Title = game.Title,
                 Date = game.Date,
                 StartTime = game.StartTime,
                 EndTime = game.EndTime,
@@ -177,6 +178,7 @@ namespace EasySport_BLL.Tools
                 yield return new GameDTO
                 {
                     Id = item.Id,
+                    Title = item.Title,
                     Date = item.Date,
                     StartTime = item.StartTime,
                     EndTime = item.EndTime,

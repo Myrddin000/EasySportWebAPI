@@ -52,17 +52,18 @@ namespace EasySport_DAL.Models
             using SqlConnection sqlConnection = new SqlConnection(connectionstring);
             sqlConnection.Open();
             using SqlCommand cmd = sqlConnection.CreateCommand();
-            cmd.CommandText = @"SELECT * FROM[Games]";
+            cmd.CommandText = @"SELECT Id, Title, Date, StartTime, EndTime, ScoreA, ScoreB, TeamId FROM [Games]";
             using SqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
             {
                 yield return new GameEntities
                 {
                     Id = (Guid)reader[nameof(GameEntities.Id)],
+                    Title = (string)reader[nameof(GameEntities.Title)],
                     Date = (DateTime)reader[nameof(GameEntities.Date)],
                     StartTime = (DateTime)reader[nameof(GameEntities.StartTime)],
                     EndTime = (DateTime)reader[nameof(GameEntities.EndTime)],
-                    ScoreA = (reader["ScoreA"]is DBNull) ? null : (int?)reader["ScoreA"],
+                    ScoreA = (reader["ScoreA"] is DBNull) ? null : (int?)reader["ScoreA"],
                     ScoreB = (reader["ScoreB"] is DBNull) ? null : (int?)reader["ScoreB"],
                     TeamId = (Guid)reader[nameof(GameEntities.TeamId)]
                 };
@@ -104,8 +105,9 @@ namespace EasySport_DAL.Models
             using SqlConnection sqlConnection = new SqlConnection(connectionstring);
             sqlConnection.Open();
             using SqlCommand cmd = sqlConnection.CreateCommand();
-            cmd.CommandText = @"UPDATE [Games] SET [Date] = @Date, [StartTime] = @StartTime, [EndTime] = @EndTime, [ScoreA] = @ScoreA, [ScoreB] = @ScoreB, [TeamId] = @TeamId WHERE [Id] = @Id";
+            cmd.CommandText = @"UPDATE [Games] SET [Title] = @Title, [Date] = @Date, [StartTime] = @StartTime, [EndTime] = @EndTime, [ScoreA] = @ScoreA, [ScoreB] = @ScoreB, [TeamId] = @TeamId WHERE [Id] = @Id";
             cmd.Parameters.AddWithValue(nameof(GameEntities.Id), game.Id);
+            cmd.Parameters.AddWithValue(nameof(GameEntities.Title), game.Title);
             cmd.Parameters.AddWithValue(nameof(GameEntities.Date), game.Date);
             cmd.Parameters.AddWithValue(nameof(GameEntities.StartTime), game.StartTime);
             cmd.Parameters.AddWithValue(nameof(GameEntities.EndTime), game.EndTime);

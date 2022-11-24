@@ -10,6 +10,8 @@ namespace EasySport_DAL.Models
     {
         public Guid Id { get; set; }
 
+        public string Title { get; set; }
+
         public DateTime Date { get; set; }
 
         public DateTime StartTime { get; set; }
