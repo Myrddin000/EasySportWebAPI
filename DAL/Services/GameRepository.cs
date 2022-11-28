@@ -18,7 +18,8 @@ namespace EasySport_DAL.Models
             using SqlConnection sqlConnection = new SqlConnection(connectionstring);
             sqlConnection.Open();
             using SqlCommand cmd = sqlConnection.CreateCommand();
-            cmd.CommandText = @"INSERT INTO[Games]([Date], [StartTime], [EndTime], [ScoreA], [ScoreB], [TeamId]) VALUES(@Date, @StartTime, @EndTime, @ScoreA, @ScoreB, @TeamId)";
+            cmd.CommandText = @"INSERT INTO[Games]([Title], [Date], [StartTime], [EndTime], [ScoreA], [ScoreB], [TeamId]) VALUES(@Title, @Date, @StartTime, @EndTime, @ScoreA, @ScoreB, @TeamId)";
+            cmd.Parameters.AddWithValue(nameof(GameEntities.Title), game.Title);
             cmd.Parameters.AddWithValue(nameof(GameEntities.Date), game.Date);
             cmd.Parameters.AddWithValue(nameof(GameEntities.StartTime), game.StartTime);
             cmd.Parameters.AddWithValue(nameof(GameEntities.EndTime), game.EndTime);
