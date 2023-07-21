@@ -24,7 +24,7 @@ namespace EasySport_BLL.Services
         {
             if (user == null)
             {
-                throw new Exception("Données incomplètes");
+                throw new Exception("incomplete data");
             }
             try
             {
