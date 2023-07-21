@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="14efee8a-73ee-4aef-a9ce-7dc903305894" ChangeDateTime="10/07/2022 14:38:45">
+    <Property Name="ElementName" Value="[dbo].[Games_Users].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Games_Users]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="UserId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="c3e08746-b677-4dc2-aa15-b19b3e54b598" ChangeDateTime="10/07/2022 14:44:33">
+    <Property Name="ElementName" Value="[dbo].[Teams_Users].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Teams_Users]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="TeamId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="eedaee4d-02a4-4b28-8d3e-9c4aa6fc65d4" ChangeDateTime="10/07/2022 14:46:51">
+    <Property Name="ElementName" Value="[dbo].[Teams_Games].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Teams_Games]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="TeamId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="59a36b6e-7090-4269-a0b2-14c7d969abec" ChangeDateTime="10/07/2022 16:05:52">
+    <Property Name="ElementName" Value="[dbo].[Chat].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Chat]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="TeamId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="2b0fcef9-d5cd-4bd6-8cf5-2e201b9a829f" ChangeDateTime="10/10/2022 08:35:35">
+    <Property Name="ElementName" Value="[dbo].[Users].[role]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Users]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Role" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="6417791e-94b7-4307-b4c6-8281afb4302c" ChangeDateTime="11/17/2022 14:26:42">
+    <Property Name="ElementName" Value="[dbo].[Games_Users].[Participant]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Games_Users]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Available" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="d8f93c54-3579-4617-955a-7185900c793f" ChangeDateTime="11/17/2022 14:26:55">
+    <Property Name="ElementName" Value="[dbo].[Games_Users].[Absent]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Games_Users]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="NotAvailable" />
+  </Operation>
+</Operations>
