@@ -17,6 +17,7 @@ namespace EasySport_API.Controllers
         {
             _userService = userService;
         }
+    //
 
         [HttpGet]
         public IActionResult GetAll()
